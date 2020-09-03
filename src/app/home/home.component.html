@@ -1,0 +1,58 @@
+<div class="container-fluid border mt-4">
+    <h3 class="text-center mb-4 text-warning">Weather App</h3>
+    <form #formname="ngForm" (ngSubmit)="formname.valid && SendVal(formname.value)">
+        <div class="form-group">
+            <label for="name">Enter City Name</label>
+            <input type="text" class="form-control" autocomplete="off" [(ngModel)]="City" #number1="ngModel" required
+                name="cityName" id="name">
+            <div *ngIf="number1.touched || number1.errors?.required && formname.submitted">
+                <div *ngIf="number1.errors?.required" style="color: red;">
+                    City Name Required!
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<hr>
+<h3 *ngIf="!ShowInfo" class="text-center text-danger">Please enter correct city name...!</h3>
+<div class="container" *ngIf="ShowInfo">
+    <div class="row">
+        <div class="col-12 col-lg-6 col-sm-12 col-md-12 mb-4">
+            <div class="card p-4 text-center">
+                <h5 class="card-title"><span style="color: #FB0;">{{WeatherData.name}}</span> Temprature Details</h5>
+                <p class="card-text">Temp : {{WeatherData.main.temp}} F</p>
+                <p class="card-text">Temp_Max : {{WeatherData.main.temp_max}} F</p>
+                <p class="card-text">Temp_Min : {{WeatherData.main.temp_min}} F</p>
+                <p class="card-text">Humidity : {{WeatherData.main.humidity}}</p>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-sm-12 col-md-12 mb-4">
+            <div class="card p-4 text-center">
+                <h5 class="card-title"><span style="color: #FB0;">{{WeatherData.name}}</span> Weather Details</h5>
+                <p class="card-text">Country : {{WeatherData.sys.country}}</p>
+                <p class="card-text">ID : {{WeatherData.weather[0].id}}</p>
+                <p class="card-text">Description : {{WeatherData.weather[0].description}}</p>
+                <p class="card-text">Main : {{WeatherData.weather[0].main}}</p>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-sm-12 col-md-12 mb-4">
+            <div class="card p-4 text-center">
+                <h5 class="card-title"><span style="color: #FB0;">{{WeatherData.name}}</span> Wind Details</h5>
+                <p class="card-text">Wind Deg : {{WeatherData.wind.deg}}</p>
+                <p class="card-text">Wind Speed : {{WeatherData.wind.speed}}</p>
+                <p class="card-text">Sun Rise : {{WeatherData.sys.sunrise}}</p>
+                <p class="card-text">Sun Set : {{WeatherData.sys.sunset}}</p>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-sm-12 col-md-12 mb-4">
+            <div class="card p-4 text-center" style="height: 230px;">
+                <h5 class="card-title"><span style="color: #FB0;">{{WeatherData.name}}</span> Geographical Details</h5>
+                <p class="card-text">Latitude : {{WeatherData.coord.lat}}</p>
+                <p class="card-text">Longitude : {{WeatherData.coord.lon}}</p>
+                <p class="card-text">ID : {{WeatherData.id}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<h6 class="text-center text-success">Designed By - Mustafa M Kaladagi</h6>

@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.service.getWeatherByCity(this.City).subscribe(data => {
       let response = JSON.parse(JSON.stringify(data));
-      this.WeatherData = response;
+      this.WeatherData = response;      
     });
   }
 
